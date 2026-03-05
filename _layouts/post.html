@@ -1,0 +1,42 @@
+---
+layout: default
+---
+<div class="container">
+  <article>
+    <header class="post-header">
+      <div class="post-header-meta">
+        <span class="post-date">{{ page.date | date: "%Y-%m-%d" }}</span>
+        {% if page.author %}<span>by {{ page.author }}</span>{% endif %}
+        {% assign words = content | number_of_words %}
+        <span>~{{ words | divided_by: 200 | plus: 1 }} min read</span>
+      </div>
+      <h1>{{ page.title }}</h1>
+      {% if page.tags %}
+      <div class="post-header-tags">
+        {% for tag in page.tags %}
+        <span class="post-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </header>
+
+    <div class="post-content">
+      {{ content }}
+    </div>
+
+    <nav class="post-nav">
+      {% if page.previous.url %}
+      <a href="{{ page.previous.url | relative_url }}" class="post-nav-prev">
+        <span class="nav-label">&larr; Previous</span>
+        {{ page.previous.title }}
+      </a>
+      {% endif %}
+      {% if page.next.url %}
+      <a href="{{ page.next.url | relative_url }}" class="post-nav-next">
+        <span class="nav-label">Next &rarr;</span>
+        {{ page.next.title }}
+      </a>
+      {% endif %}
+    </nav>
+  </article>
+</div>

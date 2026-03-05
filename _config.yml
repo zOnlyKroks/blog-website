@@ -1,0 +1,33 @@
+title: "zOnlyKroks"
+description: "Finn Rades — Software Engineering Student, Self-Hosting Enthusiast, Volunteer Firefighter"
+url: "https://zOnlyKroks.github.io"
+baseurl: ""
+
+author:
+  name: "Finn Rades"
+  alias: "zOnlyKroks"
+  email: "finnrades@gmail.com"
+  github: "zOnlyKroks"
+  discord_handle: "zonlykroks"
+  discord_server: "https://discord.gg/XUn9Kt5dsy"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+permalink: /blog/:year/:month/:day/:title/
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle

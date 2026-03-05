@@ -1,0 +1,518 @@
+// ─── Variables ────────────────────────────────────────────────────────────────
+
+$bg:          #0d1117;
+$bg-surface:  #161b22;
+$bg-elevated: #1c2128;
+$border:      #30363d;
+$text:        #c9d1d9;
+$text-muted:  #6e7681;
+$text-dim:    #8b949e;
+$green:       #39d353;
+$cyan:        #58a6ff;
+$yellow:      #e3b341;
+$red:         #f85149;
+$prompt:      #39d353;
+
+$font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+$font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+// ─── Reset & Base ─────────────────────────────────────────────────────────────
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: $bg;
+  color: $text;
+  font-family: $font-mono;
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $cyan;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  &:hover { color: lighten($cyan, 15%); text-decoration: underline; }
+}
+
+img { max-width: 100%; display: block; }
+
+// ─── Scrollbar ────────────────────────────────────────────────────────────────
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: $bg; }
+::-webkit-scrollbar-thumb { background: $border; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: $text-muted; }
+
+// ─── Layout ───────────────────────────────────────────────────────────────────
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+// ─── Navigation ───────────────────────────────────────────────────────────────
+
+.site-nav {
+  border-bottom: 1px solid $border;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  background: rgba($bg, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $green;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+
+    .prompt { color: $text-muted; font-weight: 400; }
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: $green;
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 1.2s step-end infinite;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+
+    a {
+      color: $text-dim;
+      font-size: 0.875rem;
+      transition: color 0.15s;
+      &:hover, &.active { color: $green; text-decoration: none; }
+    }
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+// ─── Hero / Terminal Block ────────────────────────────────────────────────────
+
+.terminal-window {
+  background: $bg-surface;
+  border: 1px solid $border;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2.5rem 0;
+
+  .terminal-bar {
+    background: $bg-elevated;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid $border;
+
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      &.red    { background: #ff5f57; }
+      &.yellow { background: #febc2e; }
+      &.green  { background: #28c840; }
+    }
+
+    .title {
+      color: $text-muted;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.9;
+
+    .line { display: flex; gap: 0.5rem; }
+    .ps1  { color: $green; white-space: nowrap; }
+    .cmd  { color: $text; }
+    .out  { color: $text-dim; padding-left: 0; }
+    .val  { color: $cyan; }
+    .tag  {
+      display: inline-block;
+      background: rgba($green, 0.12);
+      color: $green;
+      border: 1px solid rgba($green, 0.3);
+      border-radius: 4px;
+      padding: 0 0.4rem;
+      font-size: 0.78rem;
+      margin: 0.1rem;
+    }
+    .tag-yellow {
+      background: rgba($yellow, 0.12);
+      color: $yellow;
+      border-color: rgba($yellow, 0.3);
+    }
+    .tag-cyan {
+      background: rgba($cyan, 0.12);
+      color: $cyan;
+      border-color: rgba($cyan, 0.3);
+    }
+    .blank { height: 0.5rem; }
+  }
+}
+
+// ─── Sections ─────────────────────────────────────────────────────────────────
+
+.section { margin: 3rem 0; }
+
+.section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $text-muted;
+  border-bottom: 1px solid $border;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  &::before {
+    content: '# ';
+    color: $yellow;
+  }
+}
+
+// ─── Cards ────────────────────────────────────────────────────────────────────
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: $bg-surface;
+  border: 1px solid $border;
+  border-radius: 6px;
+  padding: 1.25rem;
+  transition: border-color 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: $green;
+    transform: translateY(-2px);
+  }
+
+  .card-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .card-title { font-size: 0.95rem; color: $text; font-weight: 600; margin-bottom: 0.3rem; }
+  .card-desc  { font-size: 0.82rem; color: $text-dim; }
+}
+
+// ─── Project Links ────────────────────────────────────────────────────────────
+
+.project-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+
+.project-item {
+  background: $bg-surface;
+  border: 1px solid $border;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: $cyan; }
+
+  .project-icon { color: $cyan; font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  .project-info {
+    .project-name {
+      color: $cyan;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .project-desc { font-size: 0.82rem; color: $text-dim; margin-top: 0.2rem; }
+  }
+}
+
+// ─── Contact Links ────────────────────────────────────────────────────────────
+
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: $bg-surface;
+  border: 1px solid $border;
+  border-radius: 6px;
+  padding: 0.875rem 1.25rem;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: $green; }
+
+  .contact-icon { color: $green; width: 1.2rem; text-align: center; flex-shrink: 0; }
+  .contact-label { color: $text-muted; font-size: 0.8rem; width: 5rem; flex-shrink: 0; }
+  .contact-value { color: $cyan; font-size: 0.875rem; }
+}
+
+// ─── Blog List ────────────────────────────────────────────────────────────────
+
+.post-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post-item {
+  background: $bg-surface;
+  border: 1px solid $border;
+  border-radius: 6px;
+  padding: 1.25rem;
+  transition: border-color 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: $green;
+    transform: translateY(-1px);
+  }
+
+  .post-meta {
+    font-size: 0.75rem;
+    color: $text-muted;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .post-date { color: $yellow; }
+
+  .post-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+  .post-tag {
+    background: rgba($green, 0.1);
+    color: $green;
+    border: 1px solid rgba($green, 0.25);
+    border-radius: 3px;
+    padding: 0 0.35rem;
+    font-size: 0.72rem;
+  }
+
+  .post-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 0.4rem;
+    a { color: $text; &:hover { color: $green; text-decoration: none; } }
+  }
+
+  .post-excerpt { font-size: 0.83rem; color: $text-dim; }
+}
+
+// ─── Blog Post ────────────────────────────────────────────────────────────────
+
+.post-header {
+  margin: 2.5rem 0 2rem;
+
+  .post-header-meta {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    color: $text;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .post-header-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+  .post-tag {
+    background: rgba($green, 0.1);
+    color: $green;
+    border: 1px solid rgba($green, 0.25);
+    border-radius: 3px;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.78rem;
+  }
+}
+
+.post-content {
+  h1, h2, h3, h4 {
+    color: $text;
+    margin: 2rem 0 0.75rem;
+    line-height: 1.3;
+
+    &::before { color: $yellow; margin-right: 0.4em; }
+  }
+
+  h2::before { content: '##'; }
+  h3::before { content: '###'; }
+  h4::before { content: '####'; }
+
+  p { color: $text-dim; margin-bottom: 1rem; font-size: 0.92rem; }
+
+  strong { color: $text; }
+  em     { color: $yellow; font-style: normal; }
+
+  ul, ol {
+    color: $text-dim;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+
+    li { margin-bottom: 0.3rem; }
+  }
+
+  code {
+    background: $bg-elevated;
+    border: 1px solid $border;
+    border-radius: 3px;
+    padding: 0.1em 0.4em;
+    font-family: $font-mono;
+    font-size: 0.85em;
+    color: $cyan;
+  }
+
+  pre {
+    background: $bg-elevated;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+
+    code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: $text;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid $yellow;
+    padding-left: 1rem;
+    margin: 1.25rem 0;
+    color: $text-dim;
+    font-style: italic;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid $border;
+    margin: 2rem 0;
+  }
+
+  a { color: $cyan; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+
+    th, td {
+      border: 1px solid $border;
+      padding: 0.6rem 0.875rem;
+      text-align: left;
+    }
+
+    th { background: $bg-elevated; color: $text; }
+    td { color: $text-dim; }
+    tr:hover td { background: rgba($bg-elevated, 0.5); }
+  }
+}
+
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3rem 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border;
+
+  a {
+    background: $bg-surface;
+    border: 1px solid $border;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.83rem;
+    color: $text-dim;
+    transition: border-color 0.2s, color 0.2s;
+    max-width: 48%;
+
+    &:hover { border-color: $green; color: $green; text-decoration: none; }
+    .nav-label { font-size: 0.72rem; color: $text-muted; display: block; margin-bottom: 0.2rem; }
+  }
+
+  .post-nav-next { text-align: right; margin-left: auto; }
+}
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+
+.site-footer {
+  border-top: 1px solid $border;
+  padding: 2rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: $text-muted;
+
+  a { color: $text-muted; &:hover { color: $green; } }
+}
+
+// ─── Syntax Highlighting (Rouge) ─────────────────────────────────────────────
+
+.highlight {
+  .c, .c1, .cm, .cs { color: #6e7681; font-style: italic; }
+  .k, .kd, .kn, .kp, .kr, .kt { color: #ff7b72; }
+  .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss { color: #a5d6ff; }
+  .n, .na { color: $text; }
+  .nb { color: #ffa657; }
+  .nc { color: #f0883e; }
+  .nf, .nx { color: $cyan; }
+  .mi, .mf, .mh, .mo { color: #79c0ff; }
+  .o, .ow { color: #ff7b72; }
+  .p { color: $text; }
+  .gp { color: $green; user-select: none; }
+  .go { color: $text-dim; }
+  .ge { color: $yellow; }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+
+@media (max-width: 600px) {
+  .nav-links { gap: 1rem; }
+  .card-grid { grid-template-columns: 1fr; }
+  .terminal-body { font-size: 0.8rem; }
+  .post-header h1 { font-size: 1.3rem; }
+  .post-nav { flex-direction: column; a { max-width: 100%; } }
+}
