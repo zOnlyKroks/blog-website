@@ -12,6 +12,7 @@ title: "About"
       <span class="title">zsh — ~</span>
     </div>
     <div class="terminal-body">
+
       <div class="line">
         <span class="ps1">finn@localhost:~$</span>
         <span class="cmd">whoami</span>
@@ -23,7 +24,7 @@ title: "About"
         <span class="ps1">finn@localhost:~$</span>
         <span class="cmd">cat about.txt</span>
       </div>
-      <div class="line"><span class="out">Born: <span class="val">26 June 2006</span> — currently <span class="val">19 years old</span></span></div>
+      <div class="line"><span class="out">Born: <span class="val">26 June 2006</span></span></div>
       <div class="line"><span class="out">Studying to become a Software Engineer</span></div>
       <div class="line"><span class="out">Working at <span class="val">CloudPirates</span></span></div>
       <div class="blank"></div>
@@ -52,140 +53,52 @@ title: "About"
       </div>
       <div class="line">
         <span class="out">
-          <span class="tag tag-yellow">🏐 volleyball</span>
-          <span class="tag tag-yellow">🔥 volunteer firefighter</span>
-          <span class="tag tag-cyan">🎮 modding</span>
-          <span class="tag">🖥️ homelabbing</span>
+          <span class="tag tag-yellow">volleyball</span>
+          <span class="tag tag-yellow">volunteer firefighter</span>
+          <span class="tag tag-cyan">modding</span>
+          <span class="tag">homelabbing</span>
         </span>
       </div>
       <div class="blank"></div>
 
       <div class="line">
         <span class="ps1">finn@localhost:~$</span>
+        <span class="cmd">ls -la projects/</span>
+      </div>
+      <div class="line"><span class="out">drwxr-xr-x &nbsp; <a href="https://github.com/CloudPirates-io/helm-charts" target="_blank" rel="noopener" class="val">CloudPirates/helm-charts</a> &nbsp; helm charts for cloud-native applications</span></div>
+      <div class="line"><span class="out">drwxr-xr-x &nbsp; <a href="https://github.com/FabricMC" target="_blank" rel="noopener" class="val">FabricMC</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; minecraft modding toolchain contributor</span></div>
+      <div class="line"><span class="out">drwxr-xr-x &nbsp; <a href="https://github.com/zOnlyKroks" target="_blank" rel="noopener" class="val">github.com/zOnlyKroks</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; personal projects &amp; experiments</span></div>
+      <div class="blank"></div>
+
+      <div class="line">
+        <span class="ps1">finn@localhost:~$</span>
+        <span class="cmd">cat contact.txt</span>
+      </div>
+      <div class="line"><span class="out">github &nbsp; <a href="https://github.com/zOnlyKroks" target="_blank" rel="noopener" class="val">github.com/zOnlyKroks</a></span></div>
+      <div class="line"><span class="out">discord &nbsp;<a href="https://discord.gg/XUn9Kt5dsy" target="_blank" rel="noopener" class="val">zonlykroks &mdash; discord.gg/XUn9Kt5dsy</a></span></div>
+      <div class="line"><span class="out">email &nbsp;&nbsp; <a href="mailto:finnrades@gmail.com" class="val">finnrades@gmail.com</a> / <a href="mailto:f.rades@cloudpirates.io" class="val">f.rades@cloudpirates.io</a></span></div>
+      <div class="blank"></div>
+
+      {% if site.posts.size > 0 %}
+      <div class="line">
+        <span class="ps1">finn@localhost:~$</span>
+        <span class="cmd">ls -lt blog/</span>
+      </div>
+      {% for post in site.posts limit:3 %}
+      <div class="line"><span class="out"><span class="val">{{ post.date | date: "%Y-%m-%d" }}</span> &nbsp; <a href="{{ post.url | relative_url }}">{{ post.title }}</a>{% if post.tags %} &nbsp;{% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}{% endif %}</span></div>
+      {% endfor %}
+      {% if site.posts.size > 3 %}
+      <div class="line"><span class="out">... <a href="{{ '/blog' | relative_url }}">view all {{ site.posts.size }} posts</a></span></div>
+      {% endif %}
+      <div class="blank"></div>
+      {% endif %}
+
+      <div class="line">
+        <span class="ps1">finn@localhost:~$</span>
         <span class="cmd">_</span>
       </div>
+
     </div>
   </div>
-
-  <section class="section">
-    <h2 class="section-title">Projects</h2>
-    <ul class="project-list">
-      <li>
-        <a class="project-item" href="https://github.com/CloudPirates-io/helm-charts" target="_blank" rel="noopener">
-          <span class="project-icon">⎈</span>
-          <div class="project-info">
-            <div class="project-name">CloudPirates / helm-charts</div>
-            <div class="project-desc">Helm charts for cloud-native applications — maintained as part of my work at CloudPirates.</div>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a class="project-item" href="https://github.com/FabricMC" target="_blank" rel="noopener">
-          <span class="project-icon">🧵</span>
-          <div class="project-info">
-            <div class="project-name">FabricMC</div>
-            <div class="project-desc">Open-source Minecraft modding toolchain. I contribute to and help maintain parts of the Fabric ecosystem.</div>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a class="project-item" href="https://github.com/zOnlyKroks" target="_blank" rel="noopener">
-          <span class="project-icon">🐙</span>
-          <div class="project-info">
-            <div class="project-name">github.com/zOnlyKroks</div>
-            <div class="project-desc">My personal GitHub — miscellaneous projects, experiments, and open-source contributions.</div>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">About Me</h2>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">💼</div>
-        <div class="card-title">CloudPirates</div>
-        <div class="card-desc">Working on cloud infrastructure, Helm chart maintenance, and Kubernetes deployments.</div>
-      </div>
-      <div class="card">
-        <div class="card-icon">📚</div>
-        <div class="card-title">Student</div>
-        <div class="card-desc">Studying software engineering — combining formal education with real-world engineering work.</div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔌</div>
-        <div class="card-title">PCB / Electronics</div>
-        <div class="card-desc">Designing microelectronics and PCBs for fun. I enjoy the overlap between hardware and software.</div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🏐</div>
-        <div class="card-title">Volleyball</div>
-        <div class="card-desc">Avid volleyball player — a good reminder that not everything runs on a terminal.</div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🚒</div>
-        <div class="card-title">Volunteer Firefighter</div>
-        <div class="card-desc">Active volunteer in my local fire brigade. Community service and teamwork matter outside of code too.</div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🖥️</div>
-        <div class="card-title">Self-Hosting</div>
-        <div class="card-desc">Running my own infrastructure, learning by doing — from bare-metal Hetzner servers to full Kubernetes clusters.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">Contact</h2>
-    <ul class="contact-list">
-      <li>
-        <a class="contact-item" href="https://github.com/zOnlyKroks" target="_blank" rel="noopener">
-          <span class="contact-icon">⌥</span>
-          <span class="contact-label">github</span>
-          <span class="contact-value">github.com/zOnlyKroks</span>
-        </a>
-      </li>
-      <li>
-        <a class="contact-item" href="https://discord.gg/XUn9Kt5dsy" target="_blank" rel="noopener">
-          <span class="contact-icon">#</span>
-          <span class="contact-label">discord</span>
-          <span class="contact-value">zonlykroks &mdash; discord.gg/XUn9Kt5dsy</span>
-        </a>
-      </li>
-      <li>
-        <a class="contact-item" href="mailto:finnrades@gmail.com">
-          <span class="contact-icon">@</span>
-          <span class="contact-label">email</span>
-          <span class="contact-value">finnrades@gmail.com &nbsp;/&nbsp; f.rades@cloudpirates.io</span>
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  {% if site.posts.size > 0 %}
-  <section class="section">
-    <h2 class="section-title">Latest Posts</h2>
-    <ul class="post-list">
-      {% for post in site.posts limit:3 %}
-      <li class="post-item">
-        <div class="post-meta">
-          <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-          {% if post.tags %}
-          <div class="post-tags">
-            {% for tag in post.tags %}<span class="post-tag">{{ tag }}</span>{% endfor %}
-          </div>
-          {% endif %}
-        </div>
-        <div class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
-        {% if post.excerpt %}<div class="post-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</div>{% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-    <p style="margin-top:1rem; font-size:0.85rem;">
-      <a href="{{ '/blog' | relative_url }}">View all posts &rarr;</a>
-    </p>
-  </section>
-  {% endif %}
 
 </div>

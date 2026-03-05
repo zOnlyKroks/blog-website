@@ -2,41 +2,48 @@
 layout: default
 ---
 <div class="container">
-  <article>
-    <header class="post-header">
-      <div class="post-header-meta">
-        <span class="post-date">{{ page.date | date: "%Y-%m-%d" }}</span>
-        {% if page.author %}<span>by {{ page.author }}</span>{% endif %}
-        {% assign words = content | number_of_words %}
-        <span>~{{ words | divided_by: 200 | plus: 1 }} min read</span>
-      </div>
-      <h1>{{ page.title }}</h1>
-      {% if page.tags %}
-      <div class="post-header-tags">
-        {% for tag in page.tags %}
-        <span class="post-tag">{{ tag }}</span>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </header>
 
-    <div class="post-content">
-      {{ content }}
+  <div class="terminal-window">
+    <div class="terminal-bar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="title">zsh — ~/blog</span>
     </div>
+    <div class="terminal-body">
+      <div class="line">
+        <span class="ps1">finn@localhost:~/blog$</span>
+        <span class="cmd">cat {{ page.slug }}.md</span>
+      </div>
+      <div class="line">
+        <span class="out">
+          <span class="val">{{ page.date | date: "%Y-%m-%d" }}</span>
+          {% assign words = content | number_of_words %}
+          &nbsp; ~{{ words | divided_by: 200 | plus: 1 }} min read
+          {% if page.tags %}&nbsp;{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}{% endif %}
+        </span>
+      </div>
+    </div>
+  </div>
 
-    <nav class="post-nav">
-      {% if page.previous.url %}
-      <a href="{{ page.previous.url | relative_url }}" class="post-nav-prev">
-        <span class="nav-label">&larr; Previous</span>
-        {{ page.previous.title }}
-      </a>
-      {% endif %}
-      {% if page.next.url %}
-      <a href="{{ page.next.url | relative_url }}" class="post-nav-next">
-        <span class="nav-label">Next &rarr;</span>
-        {{ page.next.title }}
-      </a>
-      {% endif %}
-    </nav>
+  <article class="post-content">
+    <h1>{{ page.title }}</h1>
+    {{ content }}
   </article>
+
+  <nav class="post-nav">
+    {% if page.previous.url %}
+    <a href="{{ page.previous.url | relative_url }}" class="post-nav-prev">
+      <span class="nav-label">cd ../prev</span>
+      {{ page.previous.title }}
+    </a>
+    {% endif %}
+    {% if page.next.url %}
+    <a href="{{ page.next.url | relative_url }}" class="post-nav-next">
+      <span class="nav-label">cd ../next</span>
+      {{ page.next.title }}
+    </a>
+    {% endif %}
+  </nav>
+
 </div>
