@@ -17,11 +17,13 @@ The biggest issue is that these clients are closed source. That means the code t
 
 This matters more than most people realise. Every time you launch Lunar Client you are running software from a company you have no real relationship with, and you have no way to verify it does only what they claim. You are taking their word for it, every single session.
 
-Compare that to Fabric mods, where every mod is typically open source. Anyone can read the code, which means the community constantly scrutinises it. If a mod did something suspicious, someone would notice.
+Compare that to Fabric mods, where every mod is typically open source. Anyone can read the code, which means the community constantly scrutinises it. If a mod did something suspicious, someone would notice. Additionally, platforms like CurseForge and Modrinth actively scan uploaded mods for malicious code and behaviour, providing an extra layer of protection that simply does not exist for closed-source clients.
 
 ## Telemetry and Data Collection
 
 Closed-source clients collect data about you, and the exact scope of that collection is not something you can verify. Their privacy policies exist, but you cannot confirm the software actually behaves as described, because you cannot read it.
+
+Even when you do read these privacy policies, the average person would be uncomfortable with the types and scope of data these companies collect. Many policies allow for collection of system information, usage patterns, hardware details, and behavioural data that goes far beyond what is necessary for the software to function.
 
 ## The "But It Is Whitelisted on Servers" Argument
 
@@ -50,6 +52,8 @@ In the open modding ecosystem this kind of conflict can actually be fixed, becau
 Everything PvP clients offer exists as individual open-source Fabric mods. Sodium[^1] alone will probably give you better FPS and compatibility than any PvP client's built-in optimisations. Iris handles shaders, Lithium handles further performance improvements, and there are HUD mods for every piece of information you could want on screen. A comprehensive list of alternatives covering performance, visuals, and quality of life is maintained at [optifine.alternatives.lambdaurora.dev](https://optifine.alternatives.lambdaurora.dev).
 
 If you want a ready-made starting point rather than assembling mods yourself, [Fabulously Optimized](https://modrinth.com/modpack/fabulously-optimized) is a well-maintained, battle-tested Fabric modpack that covers performance and quality-of-life essentials out of the box. It will not replicate every PvP-specific feature a dedicated client offers, but for most players it covers the things that actually matter.
+
+For those who rely on PvP clients primarily for cosmetic and social features, these can be replaced as well. Mods like Cosmetics+ provide custom capes and cosmetics, while voice chat mods like Simple Voice Chat offer in-game communication. Many servers also support cosmetic systems through resource packs or plugins that work independently of your client choice.
 
 It takes a bit more setup than downloading one installer, but the result is a setup you actually understand and control.
 
