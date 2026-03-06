@@ -47,7 +47,7 @@ In the open modding ecosystem this kind of conflict can actually be fixed, becau
 
 ## What to Use Instead
 
-Everything PvP clients offer exists as individual open-source Fabric mods. Sodium[^1] alone will give you better FPS than any PvP client's built-in optimisations. Iris handles shaders, Lithium handles further performance improvements, and there are HUD mods for every piece of information you could want on screen. A comprehensive list of alternatives covering performance, visuals, and quality of life is maintained at [optifine.alternatives.lambdaurora.dev](https://optifine.alternatives.lambdaurora.dev).
+Everything PvP clients offer exists as individual open-source Fabric mods. Sodium[^1] alone will probably give you better FPS and compatibility than any PvP client's built-in optimisations. Iris handles shaders, Lithium handles further performance improvements, and there are HUD mods for every piece of information you could want on screen. A comprehensive list of alternatives covering performance, visuals, and quality of life is maintained at [optifine.alternatives.lambdaurora.dev](https://optifine.alternatives.lambdaurora.dev).
 
 If you want a ready-made starting point rather than assembling mods yourself, [Fabulously Optimized](https://modrinth.com/modpack/fabulously-optimized) is a well-maintained, battle-tested Fabric modpack that covers performance and quality-of-life essentials out of the box. It will not replicate every PvP-specific feature a dedicated client offers, but for most players it covers the things that actually matter.
 
